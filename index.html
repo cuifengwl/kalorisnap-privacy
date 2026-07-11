@@ -35,7 +35,7 @@
     <p class="meta">Last updated: July 2026</p>
 
     <h2>What we collect</h2>
-    <p>KaloriSnap stores your profile (age, sex, height, weight, activity level, goal) and your meal history locally on your device. To protect free-tier limits and enable Pro features, our server receives a random device identifier, your IP address (for rate limiting), and your RevenueCat App User ID plus subscription status when you scan food. Food photos you scan are sent to our AI provider solely to analyze the food, and are not used to identify you.</p>
+    <p>KaloriSnap stores your profile (age, sex, height, weight, activity level, goal) and your meal history locally on your device. To protect free-tier limits and enable Pro features, our server receives a random device identifier, your IP address (for rate limiting), your RevenueCat App User ID, subscription status, and — when you first register a Pro device — a cryptographically signed App Store transaction from your device for verification. We verify that signature on the server and do not persist the transaction identifier. Food photos you scan are sent to our AI provider solely to analyze the food, and are not used to identify you.</p>
 
     <h2>How photos are processed</h2>
     <p>When you scan a meal, the photo is transmitted securely (HTTPS) to our server, then to Alibaba Cloud DashScope (Qwen-VL) for nutritional analysis. Photos are processed transiently and are not used for advertising.</p>
@@ -66,7 +66,7 @@
     <p class="meta">最后更新：2026 年 7 月</p>
 
     <h2>我们收集什么</h2>
-    <p>KaloriSnap 将你的个人档案（年龄、性别、身高、体重、活动量、目标）和餐食记录存储在你的设备本地。为保护免费额度并启用 Pro 功能，服务器会收到随机设备标识符、你的 IP 地址（用于限流），以及扫描时的 RevenueCat 用户 ID 和订阅状态。你扫描的食物照片仅会发送给 AI 服务商用于分析食物，不会用于识别你的身份。</p>
+    <p>KaloriSnap 将你的个人档案（年龄、性别、身高、体重、活动量、目标）和餐食记录存储在你的设备本地。为保护免费额度并启用 Pro 功能，服务器会收到随机设备标识符、你的 IP 地址（用于限流）、RevenueCat 用户 ID、订阅状态，以及首次注册 Pro 设备时来自本机的 Apple 加密签名交易（用于验证，服务端不持久保存交易标识）。你扫描的食物照片仅会发送给 AI 服务商用于分析食物，不会用于识别你的身份。</p>
 
     <h2>照片如何处理</h2>
     <p>当你扫描餐食时，照片会通过加密连接（HTTPS）先传到我们的服务器，再交由阿里云百炼（Qwen-VL）估算营养成分。照片仅在分析过程中临时处理，不会用于广告。</p>
@@ -97,7 +97,7 @@
     <p class="meta">最後更新：2026 年 7 月</p>
 
     <h2>我們收集什麼</h2>
-    <p>KaloriSnap 將你的個人檔案（年齡、性別、身高、體重、活動量、目標）和餐點記錄儲存在你的裝置本機。為保護免費額度並啟用 Pro 功能，伺服器會收到隨機裝置識別碼、你的 IP 位址（用於限流），以及掃描時的 RevenueCat 使用者 ID 和訂閱狀態。你掃描的食物照片僅會傳送給 AI 服務商用於分析食物，不會用於識別你的身分。</p>
+    <p>KaloriSnap 將你的個人檔案（年齡、性別、身高、體重、活動量、目標）和餐點記錄儲存在你的裝置本機。為保護免費額度並啟用 Pro 功能，伺服器會收到隨機裝置識別碼、你的 IP 位址（用於限流）、RevenueCat 使用者 ID、訂閱狀態，以及首次註冊 Pro 裝置時來自本機的 Apple 加密簽名交易（用於驗證，伺服器不持久保存交易識別碼）。你掃描的食物照片僅會傳送給 AI 服務商用於分析食物，不會用於識別你的身分。</p>
 
     <h2>照片如何處理</h2>
     <p>當你掃描餐點時，照片會透過加密連線（HTTPS）先傳到我們的伺服器，再交由阿里雲百煉（Qwen-VL）估算營養成分。照片僅在分析過程中暫時處理，不會用於廣告。</p>
