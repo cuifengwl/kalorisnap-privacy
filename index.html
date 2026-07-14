@@ -38,13 +38,13 @@
     <p>KaloriSnap stores your profile (age, sex, height, weight, activity level, goal) and your meal history locally on your device. To protect free-tier limits and enable Pro features, our server receives a random device identifier, your IP address (for rate limiting), your RevenueCat App User ID, subscription status, and — when you register or re-verify a Pro device — a cryptographically signed App Store transaction from your device. We verify that signature on the server and do not store the raw transaction identifier; we persist a one-way HMAC-derived subscription binding token (and your RevenueCat App User ID for that device) to enforce the up-to-3-devices limit while your Pro subscription is active. Food photos you scan are sent to our AI provider solely to analyze the food, and are not used to identify you.</p>
 
     <h2>How photos are processed</h2>
-    <p>When you scan a meal, the photo is transmitted securely (HTTPS) to our server, then to Alibaba Cloud DashScope (Qwen-VL) for nutritional analysis. Photos are processed transiently and are not used for advertising.</p>
+    <p>When you scan a meal, the photo is transmitted securely (HTTPS) to our server, then to Alibaba Cloud DashScope (Qwen-VL) for nutritional analysis. KaloriSnap does not persistently store meal photos on our own servers after the request completes; the cloud model provider may process, transmit, or store content under its own terms (including possible cross-border processing depending on the deployment region). Photos are not used by KaloriSnap for advertising.</p>
 
     <h2>What we do NOT do</h2>
     <p>We do not sell your personal data. We do not show third-party ads. We do not require an account, and we do not collect your name, email, or contacts.</p>
 
     <h2>Data retention &amp; deletion</h2>
-    <p>Your profile, meal history, and photos live on your device. You can permanently delete them via Settings → Delete all my data (removes profile, entries, and meal photos). An anonymous device identifier and install credential are stored in the iOS Keychain and may persist across uninstall/reinstall with the same app bundle ID. Server-side retention: install credential hashes ~400 days, IP scan counters ~48 hours, Pro subscription binding tokens and RevenueCat device mappings until you lose Pro access or are evicted from the device pool. Free-tier scan counts are not reset when you delete local data.</p>
+    <p>Your profile, meal history, and photos live on your device. You can permanently delete them via Settings → Delete all my data (removes profile, entries, and meal photos). An anonymous device identifier and install credential are stored in the iOS Keychain and may persist across uninstall/reinstall with the same app bundle ID. Server-side retention: install credential hashes ~400 days, IP scan counters ~48 hours, Pro subscription binding tokens and RevenueCat device mappings until the device next verifies entitlement with our server, is evicted from the device pool by LRU, or we perform maintenance cleanup; inactive devices may retain bindings until then. Free-tier scan counts are not reset when you delete local data.</p>
 
     <h2>Third-party services</h2>
     <p>We use Vercel (hosting), Upstash Redis (rate limits and scan quotas), RevenueCat (subscription status), and Alibaba Cloud DashScope (food image analysis). Each provider processes only the data needed to deliver the service.</p>
@@ -69,13 +69,13 @@
     <p>KaloriSnap 将你的个人档案（年龄、性别、身高、体重、活动量、目标）和餐食记录存储在你的设备本地。为保护免费额度并启用 Pro 功能，服务器会收到随机设备标识符、你的 IP 地址（用于限流）、RevenueCat 用户 ID、订阅状态，以及注册或重新验证 Pro 设备时来自本机的 Apple 加密签名交易。我们在服务端验证该签名，不保存原始交易标识；为在 Pro 订阅有效期内执行最多 3 台设备限制，我们会持久保存单向 HMAC 派生的订阅绑定令牌（以及该设备对应的 RevenueCat 用户 ID）。你扫描的食物照片仅会发送给 AI 服务商用于分析食物，不会用于识别你的身份。</p>
 
     <h2>照片如何处理</h2>
-    <p>当你扫描餐食时，照片会通过加密连接（HTTPS）先传到我们的服务器，再交由阿里云百炼（Qwen-VL）估算营养成分。照片仅在分析过程中临时处理，不会用于广告。</p>
+    <p>当你扫描餐食时，照片会通过加密连接（HTTPS）先传到我们的服务器，再交由阿里云百炼（Qwen-VL）估算营养成分。KaloriSnap 自身服务在请求完成后不会主动持久化餐食照片；云模型提供商可能按其条款处理、传输或存储内容（依部署地域也可能涉及跨境处理）。KaloriSnap 不会将照片用于广告。</p>
 
     <h2>我们不会做什么</h2>
     <p>我们不出售你的个人数据，不展示第三方广告，不要求注册账号，也不收集你的姓名、邮箱或通讯录。</p>
 
     <h2>数据保留与删除</h2>
-    <p>你的档案、餐食记录和照片保存在你的设备上。你可以随时通过「设置 → 删除我的所有数据」永久删除本地档案、餐食条目和照片。匿名设备标识符和安装凭证存储在 iOS 钥匙串（SecureStore）中，使用相同 Bundle ID 重装 App 时可能被系统保留。服务端保留：安装凭证哈希约 400 天、IP 扫描计数约 48 小时、Pro 订阅绑定令牌与 RevenueCat 设备映射在你失去 Pro 权益或被移出设备池前持续保留。删除本地数据不会重置免费扫描计数。</p>
+    <p>你的档案、餐食记录和照片保存在你的设备上。你可以随时通过「设置 → 删除我的所有数据」永久删除本地档案、餐食条目和照片。匿名设备标识符和安装凭证存储在 iOS 钥匙串（SecureStore）中，使用相同 Bundle ID 重装 App 时可能被系统保留。服务端保留：安装凭证哈希约 400 天、IP 扫描计数约 48 小时、Pro 订阅绑定令牌与 RevenueCat 设备映射在该设备下次向服务器验证权益、被 LRU 移出设备池或我们执行维护清理前可能持续保留。删除本地数据不会重置免费扫描计数。</p>
 
     <h2>第三方服务</h2>
     <p>我们使用 Vercel（托管）、Upstash Redis（限流与扫描额度）、RevenueCat（订阅状态）和阿里云百炼 DashScope（食物图像分析）。各服务商仅处理提供服务所必需的数据。</p>
@@ -100,13 +100,13 @@
     <p>KaloriSnap 將你的個人檔案（年齡、性別、身高、體重、活動量、目標）和餐點記錄儲存在你的裝置本機。為保護免費額度並啟用 Pro 功能，伺服器會收到隨機裝置識別碼、你的 IP 位址（用於限流）、RevenueCat 使用者 ID、訂閱狀態，以及註冊或重新驗證 Pro 裝置時來自本機的 Apple 加密簽名交易。我們在伺服器端驗證該簽名，不保存原始交易識別碼；為在 Pro 訂閱有效期內執行最多 3 台裝置限制，我們會持久保存單向 HMAC 衍生的訂閱綁定令牌（以及該裝置對應的 RevenueCat 使用者 ID）。你掃描的食物照片僅會傳送給 AI 服務商用於分析食物，不會用於識別你的身分。</p>
 
     <h2>照片如何處理</h2>
-    <p>當你掃描餐點時，照片會透過加密連線（HTTPS）先傳到我們的伺服器，再交由阿里雲百煉（Qwen-VL）估算營養成分。照片僅在分析過程中暫時處理，不會用於廣告。</p>
+    <p>當你掃描餐點時，照片會透過加密連線（HTTPS）先傳到我們的伺服器，再交由阿里雲百煉（Qwen-VL）估算營養成分。KaloriSnap 自身服務在請求完成後不會主動持久化餐點照片；雲端模型提供商可能依其條款處理、傳輸或儲存內容（依部署地區也可能涉及跨境處理）。KaloriSnap 不會將照片用於廣告。</p>
 
     <h2>我們不會做什麼</h2>
     <p>我們不出售你的個人資料，不顯示第三方廣告，不要求註冊帳號，也不收集你的姓名、電子郵件或通訊錄。</p>
 
     <h2>資料保留與刪除</h2>
-    <p>你的檔案、餐點記錄和照片保存在你的裝置上。你可以隨時透過「設定 → 刪除我的所有資料」永久刪除本機檔案、餐點項目和照片。匿名裝置識別碼和安裝憑證儲存在 iOS 鑰匙圈（SecureStore）中，使用相同 Bundle ID 重新安裝 App 時可能被系統保留。伺服器保留：安裝憑證雜湊約 400 天、IP 掃描計數約 48 小時、Pro 訂閱綁定令牌與 RevenueCat 裝置映射在你失去 Pro 權益或被移出裝置池前持續保留。刪除本機資料不會重置免費掃描計數。</p>
+    <p>你的檔案、餐點記錄和照片保存在你的裝置上。你可以隨時透過「設定 → 刪除我的所有資料」永久刪除本機檔案、餐點項目和照片。匿名裝置識別碼和安裝憑證儲存在 iOS 鑰匙圈（SecureStore）中，使用相同 Bundle ID 重新安裝 App 時可能被系統保留。伺服器保留：安裝憑證雜湊約 400 天、IP 掃描計數約 48 小時、Pro 訂閱綁定令牌與 RevenueCat 裝置映射在該裝置下次向伺服器驗證權益、被 LRU 移出裝置池或我們執行維護清理前可能持續保留。刪除本機資料不會重置免費掃描計數。</p>
 
     <h2>第三方服務</h2>
     <p>我們使用 Vercel（託管）、Upstash Redis（限流與掃描額度）、RevenueCat（訂閱狀態）和阿里雲百煉 DashScope（食物影像分析）。各服務商僅處理提供服務所必需的資料。</p>
